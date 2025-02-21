@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 1000px;
+  text-align: center;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/*#historyList {*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*}*/
+
+/*#historyList li {*/
+/*    background-color: #f9f9f9;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ddd;*/
+/*    margin-bottom: 5px;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+
+/* Accordion Styles */
+#historyAccordion {
+  width: 100%;
+}
+
+.accordion-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  padding: 10px;
+  background-color: #eee;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background-color: #ddd;
+}
+
+.accordion-content {
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: none; /* Hidden by default */
+}
+
+.accordion-content.show {
+  display: block; /* Visible when expanded */
+}
+
+.accordion-toggle {
+  font-size: 18px;
+  font-weight: bold;
+}
