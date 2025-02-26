@@ -84,12 +84,12 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </ListItemIcon>
             {isSidebarOpen && <ListItemText primary="Text Convertor" />}
           </ListItem>
-          <ListItem button component={Link} href="/map-component">
+          {/* <ListItem button component={Link} href="/map-component">
             <ListItemIcon>
               <Map sx={{ color: "#333" }} />
             </ListItemIcon>
             {isSidebarOpen && <ListItemText primary="Map Component" />}
-          </ListItem>
+          </ListItem> */}
         </List>
       </Drawer>
     </>
