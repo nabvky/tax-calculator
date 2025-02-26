@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Typography } from "@mui/material";
-import { Menu, Calculate, InsertDriveFile, EditNote } from "@mui/icons-material";
+import { Menu, Calculate, InsertDriveFile, EditNote, Lock, Password, FontDownload, Map } from "@mui/icons-material";
 import Link from "next/link";
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
@@ -71,6 +71,24 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               <EditNote sx={{ color: "#333" }} />
             </ListItemIcon>
             {isSidebarOpen && <ListItemText primary="Note Generator" />}
+          </ListItem>
+          <ListItem button component={Link} href="/password-generator">
+            <ListItemIcon>
+              <Password sx={{ color: "#333" }} />
+            </ListItemIcon>
+            {isSidebarOpen && <ListItemText primary="Password Generator" />}
+          </ListItem>
+          <ListItem button component={Link} href="/text-convertor">
+            <ListItemIcon>
+              <FontDownload sx={{ color: "#333" }} />
+            </ListItemIcon>
+            {isSidebarOpen && <ListItemText primary="Text Convertor" />}
+          </ListItem>
+          <ListItem button component={Link} href="/map-component">
+            <ListItemIcon>
+              <Map sx={{ color: "#333" }} />
+            </ListItemIcon>
+            {isSidebarOpen && <ListItemText primary="Map Component" />}
           </ListItem>
         </List>
       </Drawer>
