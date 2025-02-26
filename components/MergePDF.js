@@ -2,9 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, Snackbar, Alert } from "@mui/material";
 import { useDropzone } from "react-dropzone";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { PDFDocument } from "pdf-lib";
-// import dingSound from "../public/ding.mp3"
 
 export default function MergePDF() {
   const [files, setFiles] = useState([]);
@@ -13,7 +12,6 @@ export default function MergePDF() {
   const [openToast, setOpenToast] = useState(false);
   const audioRef = useRef(null);
 
-  // Load history from localStorage
   useEffect(() => {
     const savedHistory = JSON.parse(localStorage.getItem("pdfMergeHistory")) || [];
     setHistory(savedHistory);
@@ -22,7 +20,7 @@ export default function MergePDF() {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "application/pdf",
     multiple: true,
-    maxSize: 30 * 1024 * 1024, // 30MB Limit
+    maxSize: 30 * 1024 * 1024,
     onDrop: (acceptedFiles, rejectedFiles) => {
       if (rejectedFiles.length > 0) {
         alert("Some files were rejected. Ensure they are PDFs and under 30MB.");
@@ -73,31 +71,24 @@ export default function MergePDF() {
     link.download = filename;
     link.click();
 
-    // Play Ding Sound
-    audioRef.current.play();
-
-    // Show Success Toast
     setOpenToast(true);
 
-    // Update History
     const newHistory = [{ name: filename, timestamp: new Date().toLocaleString() }, ...history].slice(0, 10);
     setHistory(newHistory);
     localStorage.setItem("pdfMergeHistory", JSON.stringify(newHistory));
   };
 
   return (
-    <Paper sx={{ p: 3, maxWidth: "xl", margin: "auto", width:"100%" }} >
+    <Paper sx={{ p: 3, maxWidth: "xl", margin: "auto", width: "100%" }}>
       <Typography variant="h5" align="center" sx={{ mb: 2 }}>
         Merge PDFs
       </Typography>
 
-      {/* File Upload */}
       <div {...getRootProps()} style={{ border: "2px dashed #ccc", padding: "20px", textAlign: "center", cursor: "pointer", marginBottom: "20px" }}>
         <input {...getInputProps()} />
         <Typography>Drag & Drop PDFs here or Click to Upload</Typography>
       </div>
 
-      {/* File Table */}
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="files">
           {(provided) => (
@@ -134,22 +125,11 @@ export default function MergePDF() {
         </Droppable>
       </DragDropContext>
 
-      {/* Output File Name Input */}
-      <TextField
-        fullWidth
-        label="Output File Name (Optional)"
-        variant="outlined"
-        value={outputName}
-        onChange={(e) => setOutputName(e.target.value)}
-        sx={{ mt: 2 }}
-      />
-
-      {/* Merge Button */}
+      <TextField fullWidth label="Output File Name (Optional)" variant="outlined" value={outputName} onChange={(e) => setOutputName(e.target.value)} sx={{ mt: 2 }} />
       <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }} onClick={mergePDFs}>
         Merge PDFs
       </Button>
 
-      {/* Recent Merges */}
       <Typography variant="h6" sx={{ mt: 3 }}>
         Recent Mergers
       </Typography>
@@ -174,17 +154,11 @@ export default function MergePDF() {
         </Table>
       </TableContainer>
 
-      {/* Success Toast */}
       <Snackbar open={openToast} autoHideDuration={3000} onClose={() => setOpenToast(false)} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
         <Alert severity="success" onClose={() => setOpenToast(false)}>
           PDF Merged Successfully!
         </Alert>
       </Snackbar>
-
-      {/* Audio for Ding Sound
-      <audio ref={audioRef}>
-        <source src={dingSound} type="audio/mp3" />
-      </audio> */}
     </Paper>
   );
 }
